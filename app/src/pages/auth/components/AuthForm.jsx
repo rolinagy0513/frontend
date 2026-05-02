@@ -30,7 +30,7 @@
  */
 
 
-import React,{ useState, useContext } from 'react';
+import React,{ useState } from 'react';
 import {useNavigate} from "react-router-dom";
 
 
@@ -160,6 +160,7 @@ function AuthForm({ handleChange, formData, handleSubmit,message, isLoading, typ
             )}
 
             <button type={"submit"}>{isLoading? 'loading...' : 'Submit'}</button>
+            <a onClick={()=> navigate("forgot-password")}>Forgot Password ?</a>
 
         </form>
 

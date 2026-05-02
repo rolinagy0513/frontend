@@ -11,6 +11,8 @@ import ResidentPage from "../pages/resident/ResidentPage.jsx";
 import CompanyPage from "../pages/company/CompanyPage.jsx";
 import PasswordChangePage from "../pages/passwordChange/PasswordChangePage.jsx";
 import Payment from "../pages/payment/Payment.jsx"
+import ForgotPasswordPage from "../pages/passwordChange/ForgotPasswordPage.jsx";
+import ResetPasswordPage from "../pages/passwordChange/ResetPasswordPage.jsx";
 
 export const AuthRoutes = () =>{
     return(
@@ -30,6 +32,8 @@ export const MainRoutes = () => {
             <Route path="/resident-page" element={<ResidentPage/>}/>
             <Route path="/company-page" element={<CompanyPage/>}/>
             <Route path="/password-change" element={<PasswordChangePage/>}/>
+            <Route path="/forgot-password" element={<ForgotPasswordPage/>}/>
+            <Route path="/reset-password" element={<ResetPasswordPage/>}/>
             <Route path="/payment-page" element={<Payment/>}/>
         </Routes>
     )

@@ -13,6 +13,13 @@
     width: 100%;
 }
 
+.auth-form-element a{
+    cursor: pointer;
+    text-align: center;
+    color: #1e429f;
+    font-weight: bold;
+}
+
 .auth-form-element input[type="text"],
 .auth-form-element input[type="password"] {
     padding: 18px 20px 18px 50px;
