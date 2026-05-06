@@ -12,12 +12,14 @@ import {CompanyPageContext} from "../context/company/CompanyPageContext.jsx";
 export const useBuildings = () =>{
 
     const ADMIN_BUILDING_API_PATH = import.meta.env.VITE_API_ADMIN_BUILDING_URL;
-    const RESIDENT_BUILDING_API_PATH = import.meta.env.VITE_API_RESIDENT_BUILDING_URL
-    const BUILDING_API_PATH = import.meta.env.VITE_API_BASE_BUILDING_URL
+    const RESIDENT_BUILDING_API_PATH = import.meta.env.VITE_API_RESIDENT_BUILDING_URL;
+    const BUILDING_API_PATH = import.meta.env.VITE_API_BASE_BUILDING_URL;
+    const COMPANY_BUILDING_API_PATH = import.meta.env.VITE_API_COMPANY_BUILDING_URL;
 
     const ADD_BUILDING_URL = `${ADMIN_BUILDING_API_PATH}/addNew`;
     const GET_ALL_BUILDING_URL = `${BUILDING_API_PATH}/getAll`;
     const GET_BY_APARTMENT_ID_URL = `${RESIDENT_BUILDING_API_PATH}/getBuildingByApartmentId`
+    const GET_BY_COMPANY_ID_URL = `${COMPANY_BUILDING_API_PATH}/getBuildingsByCompanyId`
 
     const{
         setBuildings
@@ -98,7 +100,8 @@ export const useBuildings = () =>{
     const getBuildingsByCompanyId = async (companyId) =>{
 
         try {
-            const response = await apiServices.get(`/api/company/building/getBuildingsByCompanyId/${companyId}`)
+            // const response = await apiServices.get(`/api/company/building/getBuildingsByCompanyId/${companyId}`)
+            const response = await apiServices.get(`${GET_BY_COMPANY_ID_URL}/${companyId}`)
             setUsersBuildings(response);
         }catch (error){
             console.error(error.message);

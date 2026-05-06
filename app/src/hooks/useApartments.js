@@ -34,7 +34,7 @@ export const useApartments = (
     } = useContext(ApartmentContext);
 
     const {
-        currentPage, setCurrentPage,
+        setCurrentPage,
         setTotalPages, setTotalElements, pageSize
     } = useContext(PaginationContext);
 

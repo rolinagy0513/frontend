@@ -19,11 +19,15 @@ export const useCompanies = () =>{
     const ADMIN_COMPANY_REQUEST_API_PATH = import.meta.env.VITE_API_ADMIN_COMPANY_REQUEST_URL
     const SEND_COMPANY_RESPONSE = import.meta.env.VITE_API_ADMIN_WEBSOCKET_COMPANY_REQUEST_RESPONSE_DESTINATION
     const REMOVE_COMPANY = import.meta.env.VITE_ADMIN_WEBSOCKET_COMPANY_REMOVE_DESTINATION
+    const COMPANY_COMPANY_API_PATH = import.meta.env.VITE_API_COMPANY_COMPANY_URL
 
     const GET_PENDING_COMPANY_REQUEST_URL = `${ADMIN_COMPANY_REQUEST_API_PATH}/getPendingRequests`
     const GET_ALL_COMPANY_URL = `${ADMIN_COMPANY_API_PATH}/getAll`
     const GET_COMPANIES_IN_BUILDING_URL = `${RESIDENT_COMPANY_API_PATH}/getByBuildingId`
     const GET_COMPANY_BY_ID = `${RESIDENT_COMPANY_API_PATH}/getById`
+    const ADD_COMPANY_URL = `${ADMIN_COMPANY_API_PATH}/addCompany`
+    const GET_MY_COMPANY_URL = `${COMPANY_COMPANY_API_PATH}/getMyCompany`
+    const EDIT_COMPANY_URL = `${COMPANY_COMPANY_API_PATH}/editCompany`
 
     const{
         setCompanies, setLoadingCompanies,
@@ -253,7 +257,8 @@ export const useCompanies = () =>{
     const getCompanyWithFeedbacks = async (companyId) =>{
 
         try{
-            const response = await apiServices.get(`/api/resident/company/getById/${companyId}`)
+            // const response = await apiServices.get(`/api/resident/company/getById/${companyId}`)
+            const response = await apiServices.get(`${RESIDENT_COMPANY_API_PATH}/getById/${companyId}`)
             setExpandedCompany(response);
         }catch (error){
             console.error(error.message);
@@ -264,7 +269,8 @@ export const useCompanies = () =>{
     const getMyCompany = async () =>{
 
         try {
-            const response = await apiServices.get("api/company/company/getMyCompany")
+            // const response = await apiServices.get("api/company/company/getMyCompany")
+            const response = await apiServices.get(GET_MY_COMPANY_URL)
             setUsersCompany(response);
         }catch (error){
             console.error(error.message);
@@ -275,7 +281,8 @@ export const useCompanies = () =>{
     const addCompany = async (data) =>{
 
         try {
-            const response = await apiServices.post("/api/admin/company/addCompany",data)
+            // const response = await apiServices.post("/api/admin/company/addCompany",data)
+            const response = await apiServices.post(ADD_COMPANY_URL, data)
         }catch (error){
             console.error(error.message);
             throw error;
@@ -286,7 +293,8 @@ export const useCompanies = () =>{
     const editCompanyDetails = async (data) =>{
 
         try {
-            const response = await apiServices.put("/api/company/company/editCompany",data)
+            // const response = await apiServices.put("/api/company/company/editCompany",data)
+            const response = await apiServices.put(EDIT_COMPANY_URL, data)
             getMyCompany()
         }catch (error){
             console.error(error.message);

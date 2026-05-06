@@ -2,9 +2,15 @@ import apiServices from "../services/ApiServices.js";
 
 export const useExcelOperations = () =>{
 
+    const ADMIN_EXCEL_API_PATH = import.meta.env.VITE_API_ADMIN_EXCEL_URL
+
+    const TEMPLATE_URL = `${ADMIN_EXCEL_API_PATH}/templateDownload`
+    const USERS_URL = `${ADMIN_EXCEL_API_PATH}/users`
+
     const getExcelTemplate = async () => {
         try {
-            const blob = await apiServices.download("/api/admin/bulk-upload/templateDownload");
+            // const blob = await apiServices.download("/api/admin/bulk-upload/templateDownload");
+            const blob = await apiServices.download(`${TEMPLATE_URL}`)
 
             const url = window.URL.createObjectURL(blob);
 
@@ -38,7 +44,13 @@ export const useExcelOperations = () =>{
             const formData = new FormData();
             formData.append('file', file);
 
-            const response = await fetch('/api/admin/bulk-upload/users', {
+            // const response = await fetch('/api/admin/bulk-upload/users', {
+            //     method: 'POST',
+            //     body: formData,
+            //     credentials: 'include'
+            // });
+
+            const response = await fetch(`${USERS_URL}`, {
                 method: 'POST',
                 body: formData,
                 credentials: 'include'

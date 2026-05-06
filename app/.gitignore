@@ -14,7 +14,7 @@ dist-ssr
 *.yml
 *.yaml
 
-app/.env
+
 
 .vscode/*
 !.vscode/extensions.json

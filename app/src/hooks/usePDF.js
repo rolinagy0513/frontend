@@ -1,13 +1,15 @@
 import apiServices from "../services/ApiServices.js";
 
 export const usePDF = () => {
+
+    const RESIDENT_PDF_URL = import.meta.env.VITE_API_RESIDENT_PDF_URL;
+
+    const DOWNLOAD_URL = `${RESIDENT_PDF_URL}/download`
+
     const generateInvoicePdf = async (invoiceData) => {
         try {
-            // Make POST request to generate PDF
-            const response = await apiServices.post('/api/resident/pdf/download', invoiceData);
-
-            // The response should be a blob for the PDF
-            // Note: You might need to adjust this based on your actual API response
+            // const response = await apiServices.post('/api/resident/pdf/download', invoiceData);
+            const response = await apiServices.post(`${DOWNLOAD_URL}`,invoiceData);
             return response;
         } catch (error) {
             console.error('Error generating PDF:', error);
@@ -18,7 +20,16 @@ export const usePDF = () => {
     const downloadPDF = async (invoiceData) => {
         try {
 
-            const response = await fetch('/api/resident/pdf/download', {
+            // const response = await fetch('/api/resident/pdf/download', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(invoiceData),
+            //     credentials: 'include'
+            // });
+
+            const response = await fetch(`${DOWNLOAD_URL}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,10 +42,8 @@ export const usePDF = () => {
                 throw new Error('Failed to generate PDF');
             }
 
-            // Get the blob from response
             const blob = await response.blob();
 
-            // Create download link
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
