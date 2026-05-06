@@ -96,9 +96,10 @@ export const useReports = () =>{
     const sendPublicReport = async(reportData) => {
         try {
             const response = await apiServices.post(
-                "/api/resident/report/sendPublic",
+                "/resident/report/sendPublic",
                 reportData
             );
+
             console.log('Report sent:', response);
             return response;
         } catch (error) {
@@ -109,7 +110,7 @@ export const useReports = () =>{
 
     const sendPrivateReport = async (selectedCompanyId ,reportData) =>{
         try{
-            const response = await apiServices.post(`/api/resident/report/sendPrivate/${selectedCompanyId}`, reportData)
+            const response = await apiServices.post(`/resident/report/sendPrivate/${selectedCompanyId}`, reportData)
             console.log(`Report sent` + response);
         }catch (error){
             console.error(error.message)
@@ -119,7 +120,7 @@ export const useReports = () =>{
 
     const getInProgressReport = async ()=>{
         try {
-            const response = await apiServices.get("api/resident/report/getInProgressReport")
+            const response = await apiServices.get("/resident/report/getInProgressReport")
             setInProgressReports(response);
         }catch (error){
             console.error(error.message)
@@ -128,7 +129,7 @@ export const useReports = () =>{
 
     const getCompletedReportsForUser = async () =>{
         try{
-            const response = await apiServices.get("api/resident/report/getCompletedReportsForUser")
+            const response = await apiServices.get("/resident/report/getCompletedReportsForUser")
             setCompletedReports(response);
         }catch (error){
             console.error(error.message)
@@ -145,7 +146,7 @@ export const useReports = () =>{
                 direction: 'ASC'
             });
 
-            const response = await apiServices.get(`api/company/report/getAllPrivateSubmitted?${params.toString()}`);
+            const response = await apiServices.get(`/company/report/getAllPrivateSubmitted?${params.toString()}`);
 
             if (response && response.content) {
                 setPrivateReports(response.content);
@@ -173,7 +174,7 @@ export const useReports = () =>{
         };
 
         try {
-            const response = await apiServices.put("api/company/report/acceptReport", data);
+            const response = await apiServices.put("/company/report/acceptReport", data);
             console.log("Response: " + response);
 
             await getPrivateReportsForCompany(currentPrivatePage, companyId);
@@ -192,7 +193,7 @@ export const useReports = () =>{
     const getAcceptedReportsForCompany = async (companyId) =>{
 
         try {
-            const response = await apiServices.get(`api/company/report/getAcceptedReports/${companyId}`)
+            const response = await apiServices.get(`/company/report/getAcceptedReports/${companyId}`)
             setAcceptedReports(response);
         }catch (error){
             console.error(error.message);
@@ -209,7 +210,7 @@ export const useReports = () =>{
             });
 
         try {
-            const response = await apiServices.put(`api/company/report/completeReport?${params.toString()}`)
+            const response = await apiServices.put(`/company/report/completeReport?${params.toString()}`)
             getAcceptedReportsForCompany(companyId);
         }catch (error){
             console.error(error.message);
