@@ -26,7 +26,6 @@ const ForgotPasswordPage = () => {
         }
     };
 
-    // Success Screen
     if (submitted) {
         return (
             <div className="forgot-password-success-page">
@@ -66,7 +65,6 @@ const ForgotPasswordPage = () => {
         );
     }
 
-    // Normal Form Screen
     return (
         <div className="forgot-password-page">
             <div className="forgot-password-container">
